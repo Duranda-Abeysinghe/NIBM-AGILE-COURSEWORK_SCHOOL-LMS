@@ -40,6 +40,18 @@ export default function UserProfile() {
       if (response.data.success) {
         setSuccess('Profile updated successfully!');
         setIsEditing(false);
+
+    // SCRUM-94: Instantly sync data without requiring a browser reload
+        const updatedUser = { ...user, name: newName.trim() };
+        localStorage.setItem('user', JSON.stringify(updatedUser));
+        window.location.reload(); 
+      }
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to update profile details.');
+    } finally {
+      setLoading(false);
+    }
+  };    
     
 return (
     <div style={{ padding: '24px', maxWidth: '500px' }}>
