@@ -22,6 +22,17 @@ export default function UserProfile() {
     e.preventDefault();
     setError('');
     setSuccess('');
+
+// SCRUM-85: Form validation rules
+    if (!newName.trim()) {
+      setError('Name field cannot be left blank.');
+      return;
+    }
+    if (newName.trim().length < 3) {
+      setError('Name must be at least 3 characters long.');
+      return;
+    }
+    
 return (
     <div style={{ padding: '24px', maxWidth: '500px' }}>
       <div className="page-header">
